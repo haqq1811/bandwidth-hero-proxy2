@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "jest": "^30.0.4",
-    "node-fetch": "^3.3.2",
-    "sharp": "^0.33.5"
+    "node-fetch": "^2.7.0",
+    "sharp": "^0.35.5"
   }
 }
