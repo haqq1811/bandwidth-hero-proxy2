@@ -14,6 +14,12 @@ It downloads original image and transforms it with [Sharp](https://github.com/lo
 
 > Note: It downloads images on user's behalf (By passing in same headers to the domain with required image), passing cookies and user's IP address through to the origin host.
 
+## How it works
+
+The extension calls `/api/index?url=<image>&jpeg=<0|1>&bw=<0|1>&l=<quality>`. The proxy downloads the image, re-encodes it as WebP (or JPEG when `jpeg=1`), optionally in grayscale, and returns it with `x-original-size` and `x-bytes-saved` headers. Images that wouldn't shrink (tiny files, SVGs, icons, or results larger than the original) are returned unchanged, and anything that fails is answered with a redirect to the original URL so the page still loads.
+
+Run `npm test` to check compression end to end against a local test image.
+
 ## Cloudflare Compatibility
 
 This proxy forwards browser headers (User-Agent, Accept, Accept-Language, Accept-Encoding, Cookie, DNT, Referer) to make requests appear like legitimate browser requests. This helps avoid being blocked by Cloudflare CAPTCHA challenges that commonly trigger on bot-like requests.

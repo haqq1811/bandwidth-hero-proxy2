@@ -1,5 +1,8 @@
 [functions]
     directory = "functions/"
+    # nft follows sharp's package "exports" and bundles only the native
+    # binaries for the Linux runtime; the default zisi bundler fails on them.
+    node_bundler = "nft"
 
 [[redirects]]
     from = "/api/*"
